@@ -9,12 +9,10 @@ public class Tower : MonoBehaviour
 
 
     //towerDMG = 포탑의 공격력을 설정해준다.
-    [SerializeField]
-    private float towerDMG = 1.0f;
+    public int towerDMG { get; private set; } = 2;
 
-    // fireRate = 포탑 발사속도를 설정해준다.
-    [SerializeField] 
-    private float fireRate = 0.7f;
+    // fireRate = 포탑 발사속도를 설정해준다. 
+    public float fireRate { get; private set; } = 1.5f;
 
     // timeAfterFire = 포탑 발사속도에 비교될 타이머를 설정해준다.
     private float timeAfterFire;
@@ -23,8 +21,7 @@ public class Tower : MonoBehaviour
     private Rigidbody2D towerRigid;
 
     // bulletPrefabs = 타워가 발사할 탄환의 prefab을 설정해준다.
-    [SerializeField] 
-    private GameObject bulletPrefabs;
+    public GameObject bulletPrefabs;
 
     // targetPosition = 타워의 콜라이더에서 검출된 개미의 위치를 저장할 변수를 설정해준다.
     public Vector2 targetPosition;
@@ -55,7 +52,7 @@ public class Tower : MonoBehaviour
         // [조건문] : 부딪힌 콜라이더의 태그가 Ant라면,
         if (collision.tag.Equals("Ant"))
         {
-            Debug.Log("개미 발견");
+            // Debug.Log("개미 발견");
             // targetPosition 에 부딪힌 위치를 저장해준다.
             targetPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
             
@@ -95,7 +92,7 @@ public class Tower : MonoBehaviour
         // bullet 변수를 인스턴스화한다.
         GameObject bullet = Instantiate(bulletPrefabs, transform.position, Quaternion.identity);
         // bullet 스크립트의 tower가 현재 타워라는 것을 알려준다.
-        bullet.GetComponent<Bullet>().tower = gameObject;
+        bullet.GetComponent<Bullet>().Tower = this;
     }
     //////////////////////////////////////////////////////////
 }

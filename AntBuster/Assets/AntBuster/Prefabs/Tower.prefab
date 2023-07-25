@@ -84,8 +84,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383a9bf29896d3e4fb8a88b33d1ded19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.7
-  bulletPrefabs: {fileID: 7402565209938127992, guid: c2e69e1e59dfa6e4b85acfe83af2a5e0, type: 3}
+  towerDMG: 1
+  fireRate: 2.5
+  bulletPrefabs: {fileID: 7402565209938127992, guid: c2e69e1e59dfa6e4b85acfe83af2a5e0,
+    type: 3}
   targetPosition: {x: 0, y: 0}
 --- !u!1 &6034528161000780377
 GameObject:
@@ -160,7 +162,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class Ant : MonoBehaviour
 {
-    private int antFirstLevel = 1;
-    private float antfirstMAXHP = 2.0f;
-    private float antfirstHP;
+    public int antFirstLevel { get; private set; } = 1;
+    public int antfirstMAXHP { get; private set; } = 2;
+    private int antHP;
 
-    [SerializeField] 
-    private float antMoveSpeed = 3.0f;
+    private float antMoveSpeed = 1.5f;
 
     private Rigidbody2D antRigid;
     private Vector2 antDestination;
@@ -22,14 +21,17 @@ public class Ant : MonoBehaviour
     private float antMoveRate = 0.5f;
     private float timeAfterMove;
 
-    [SerializeField]
-    private GameObject Tower;
+    //public GameObject Tower;
+
+
+
+
 
 
     private void Awake()
     {
         antRigid = GetComponent<Rigidbody2D>();
-        //antfirstHP = antfirstMAXHP;
+        antHP = antfirstMAXHP;
         antDestination = new Vector2(8.0f, -4.0f);
     }
 
@@ -42,7 +44,10 @@ public class Ant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (antHP <= 0)
+        {
+            Die_Ant();
+        }
     }
 
     private void FixedUpdate()
@@ -55,19 +60,22 @@ public class Ant : MonoBehaviour
         }
     }
 
+
+
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if () 
-        //{
+        GameObject bullet = collision.gameObject;
 
-        //}
-        //else
-        //{
-
-        //}
+        if (collision.transform.tag == "Bullet" && antHP > 0)
+        {
+            antHP -= bullet.GetComponent<Bullet>().Tower.towerDMG;
+            Debug.LogFormat("탄환에 맞음, 맞은 데미지 : {0}", bullet.GetComponent<Bullet>().Tower.towerDMG);
+            //Debug.Log(bullet.GetComponent<Bullet>().Tower.towerDMG);
+            Debug.LogFormat("남은 체력 : {0}", antHP);
+        }
     }
-
-
 
     private void GoToDestination() 
     {
@@ -75,7 +83,7 @@ public class Ant : MonoBehaviour
         randomDirectionY = Random.Range(-1f, 1f);
         antMoveChance = Random.Range(0, 100);
 
-        if (31 <= antMoveChance && antMoveChance <= 70) 
+        if (36 <= antMoveChance && antMoveChance <= 70) 
         {
             Vector2 targetDirection = antDestination - (Vector2)transform.position;
             transform.up = targetDirection.normalized;
@@ -88,14 +96,8 @@ public class Ant : MonoBehaviour
         }
     }
 
-    private void GetHitAnt() 
-    {
-
-    }
-
-    private void DieAnt() 
+    private void Die_Ant() 
     {
         Destroy(gameObject);   
     }
-
 }

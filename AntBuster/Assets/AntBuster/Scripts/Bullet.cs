@@ -9,14 +9,13 @@ public class Bullet : MonoBehaviour
 
 
     // bulletSpeed = 탄환의 속도를 설정해준다.
-    [SerializeField] 
-    private float bulletSpeed = 8.0f;
+    public float bulletSpeed { get; private set; } = 8.0f;
 
     // bulletRigid = 탄환의 rigidbody를 설정해준다.
     private Rigidbody2D bulletRigid;
 
     // tower = 타워라는 게임 오브젝트를 값을 불러오기 위해 설정해준다.
-    public GameObject tower;
+    public Tower Tower;
 
     //////////////////////////////////////////////////////////
 
@@ -31,9 +30,9 @@ public class Bullet : MonoBehaviour
         bulletRigid = GetComponent<Rigidbody2D>();
         //tower = GetComponent<Tower>();
 
-        Debug.Log(tower == null);
+        // Debug.Log(tower == null);
         // bulletRigid 의 속도는 tower의 콜라이더에서 받아온 targetPosition 에 탄환속도를 곱해준다.
-        bulletRigid.velocity = tower.GetComponent<Tower>().targetPosition * bulletSpeed;
+        bulletRigid.velocity = Tower.targetPosition * bulletSpeed;
         // 생성된 탄환을 8.0f 뒤에 삭제한다.
         Destroy(gameObject, 8.0f);
     }
