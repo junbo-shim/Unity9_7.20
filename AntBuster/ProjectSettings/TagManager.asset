@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Ant
   - Bullet
+  - Button_Play
+  - Button_Build
+  - Button_Restart
+  - UICanvas
   layers:
   - Default
   - TransparentFX
