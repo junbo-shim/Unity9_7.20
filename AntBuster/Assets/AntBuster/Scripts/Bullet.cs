@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
 
         // Debug.Log(tower == null);
         // bulletRigid 의 속도는 tower의 콜라이더에서 받아온 targetPosition 에 탄환속도를 곱해준다.
-        bulletRigid.velocity = Tower.targetPosition * bulletSpeed;
+        bulletRigid.velocity = (Tower.targetPosition - Tower.transform.position) * bulletSpeed;
         // 생성된 탄환을 8.0f 뒤에 삭제한다.
         Destroy(gameObject, 8.0f);
     }

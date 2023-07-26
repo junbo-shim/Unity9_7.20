@@ -71,7 +71,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 4
 --- !u!114 &6034528160548509579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,11 +84,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383a9bf29896d3e4fb8a88b33d1ded19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerDMG: 1
-  fireRate: 2.5
-  bulletPrefabs: {fileID: 7402565209938127992, guid: c2e69e1e59dfa6e4b85acfe83af2a5e0,
-    type: 3}
-  targetPosition: {x: 0, y: 0}
+  bulletPrefabs: {fileID: 7402565209938127992, guid: c2e69e1e59dfa6e4b85acfe83af2a5e0, type: 3}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &6034528161000780377
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6034528161000780376}
-  - component: {fileID: 6034528161000780379}
+  - component: {fileID: 6604363857480388803}
   m_Layer: 0
   m_Name: Sprite_Tower
   m_TagString: Untagged
@@ -121,7 +118,7 @@ Transform:
   m_Father: {fileID: 6034528160548509581}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6034528161000780379
+--- !u!212 &6604363857480388803
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,8 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224,
-    type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

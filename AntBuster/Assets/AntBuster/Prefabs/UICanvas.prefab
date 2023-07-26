@@ -517,8 +517,7 @@ MonoBehaviour:
   m_text: 'Score : '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72f786edb46101846a06f182cf740ee3, type: 2}
-  m_sharedMaterial: {fileID: -6665354995668177723, guid: 72f786edb46101846a06f182cf740ee3,
-    type: 2}
+  m_sharedMaterial: {fileID: -6665354995668177723, guid: 72f786edb46101846a06f182cf740ee3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -653,8 +652,7 @@ MonoBehaviour:
   m_text: 'Gold  : '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72f786edb46101846a06f182cf740ee3, type: 2}
-  m_sharedMaterial: {fileID: -6665354995668177723, guid: 72f786edb46101846a06f182cf740ee3,
-    type: 2}
+  m_sharedMaterial: {fileID: -6665354995668177723, guid: 72f786edb46101846a06f182cf740ee3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -810,8 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcad5013d15c8e4f814462bb080530a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 6034528160548509578, guid: ede3df4cda66e8f43ad7c9cacfd9caa5,
-    type: 3}
+  towerPrefab: {fileID: 5542405454387996072, guid: 27454fc6bd055cd43b0cae555d61c5d3, type: 3}
 --- !u!1 &5908941927839777278
 GameObject:
   m_ObjectHideFlags: 0

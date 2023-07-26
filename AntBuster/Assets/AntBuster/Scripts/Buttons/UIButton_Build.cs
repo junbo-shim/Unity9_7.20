@@ -13,6 +13,7 @@ public class UIButton_Build : UIButton, IDragHandler
 
     public GameObject towerPrefab;
 
+    public Vector3 towerLoc;
 
     //private bool isTowerImageOn = false;
     private bool isDragging = false;
@@ -64,7 +65,7 @@ public class UIButton_Build : UIButton, IDragHandler
         {
             isDragging = true;
             TowerImage.gameObject.SetActive(true);
-            Rect.anchoredPosition = new Vector2(0, 0);
+            Rect.anchoredPosition = new Vector3(0f, 0f, 0f);
             Debug.Log("´Ù¿î");
         }
         else
@@ -97,8 +98,12 @@ public class UIButton_Build : UIButton, IDragHandler
         {
             isDragging = false;
             TowerImage.gameObject.SetActive(false);
-            GameObject obj= Instantiate(towerPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-            obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, 0);
+
+            GameObject tower = Instantiate(towerPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            tower.transform.position = new Vector3(tower.transform.position.x, tower.transform.position.y, 0f);
+            Debug.Log(tower.transform.position);
+            towerLoc = tower.transform.position;
+            Debug.Log(towerLoc);
             Debug.Log("¾÷");
         }
         else

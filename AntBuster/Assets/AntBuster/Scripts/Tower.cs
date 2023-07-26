@@ -7,12 +7,11 @@ public class Tower : MonoBehaviour
     //////////////////////////////////////////////////////////
     // 변수의 선언
 
-
-    //towerDMG = 포탑의 공격력을 설정해준다.
+    // towerDMG = 포탑의 공격력을 설정해준다.
     public int towerDMG { get; private set; } = 2;
 
     // fireRate = 포탑 발사속도를 설정해준다. 
-    public float fireRate { get; private set; } = 1.5f;
+    public float fireRate { get; private set; } = 3f;
 
     // timeAfterFire = 포탑 발사속도에 비교될 타이머를 설정해준다.
     private float timeAfterFire;
@@ -24,7 +23,7 @@ public class Tower : MonoBehaviour
     public GameObject bulletPrefabs;
 
     // targetPosition = 타워의 콜라이더에서 검출된 개미의 위치를 저장할 변수를 설정해준다.
-    public Vector2 targetPosition;
+    public Vector3 targetPosition;
 
     //////////////////////////////////////////////////////////
 
@@ -45,6 +44,15 @@ public class Tower : MonoBehaviour
 
 
     //////////////////////////////////////////////////////////
+    // Update 함수
+    void Update()
+    {
+    }
+    //////////////////////////////////////////////////////////
+
+
+
+    //////////////////////////////////////////////////////////
     // 트리거 머물기
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -54,7 +62,7 @@ public class Tower : MonoBehaviour
         {
             // Debug.Log("개미 발견");
             // targetPosition 에 부딪힌 위치를 저장해준다.
-            targetPosition = new Vector2(collision.transform.position.x, collision.transform.position.y);
+            targetPosition = new Vector3(collision.transform.position.x, collision.transform.position.y, 0f);
             
             // [커스텀 메서드] : 아래에서 정의한 LookTarget 함수를 작동시킨다.
             LookTarget();
@@ -82,7 +90,7 @@ public class Tower : MonoBehaviour
     {
         // targetDirection 에 (타워 콜라이더에서 검출한 좌표 - 타워 좌표) 를 저장한다.
         // Vector A - Vector B 의 의미 : B가 A로 가는 방향과 속도
-        Vector2 targetDirection = targetPosition - (Vector2)transform.position;
+        Vector3 targetDirection = targetPosition - transform.position;
         // Y축(transform.up)에 위에서 계산한 방향과 속도에서 방향만 뽑아온다.
         transform.up = targetDirection.normalized;
     }

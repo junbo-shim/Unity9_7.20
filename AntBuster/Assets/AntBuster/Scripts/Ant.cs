@@ -5,23 +5,28 @@ using UnityEngine;
 
 public class Ant : MonoBehaviour
 {
-    public int antFirstLevel { get; private set; } = 1;
-    public int antfirstMAXHP { get; private set; } = 2;
-    private int antHP;
+    public GameManager gameManager;
+
+    //public Spawner spawner;
+    public int antFirstLevel = 1;
+    //public int antfirstMAXHP { get; private set; } = 2;
+    public int antHP { get; private set; }
 
     private float antMoveSpeed = 1.5f;
 
     private Rigidbody2D antRigid;
-    private Vector2 antDestination;
+    public Pizza pizza;
+    public Vector3 antDestination { get; private set; }
 
     private float randomDirectionX;
     private float randomDirectionY;
 
     private int antMoveChance;
-    private float antMoveRate = 0.5f;
+    private float antMoveRate;
+    private float antMoveRate_Min = 0.5f;
+    private float antMoveRate_Max = 3f;
     private float timeAfterMove;
 
-    //public GameObject Tower;
 
 
 
@@ -31,8 +36,9 @@ public class Ant : MonoBehaviour
     private void Awake()
     {
         antRigid = GetComponent<Rigidbody2D>();
-        antHP = antfirstMAXHP;
-        antDestination = new Vector2(8.0f, -4.0f);
+        antHP = antFirstLevel;
+        antDestination = pizza.transform.position;
+        antMoveRate = Random.Range(antMoveRate_Min, antMoveRate_Max);
     }
 
     // Start is called before the first frame update
@@ -52,6 +58,7 @@ public class Ant : MonoBehaviour
 
     private void FixedUpdate()
     {
+        DoNotGoBeyondMap();
         timeAfterMove += Time.deltaTime;
         if (timeAfterMove >= antMoveRate)
         {
@@ -59,8 +66,6 @@ public class Ant : MonoBehaviour
             timeAfterMove = 0;
         }
     }
-
-
 
 
 
@@ -83,16 +88,36 @@ public class Ant : MonoBehaviour
         randomDirectionY = Random.Range(-1f, 1f);
         antMoveChance = Random.Range(0, 100);
 
-        if (36 <= antMoveChance && antMoveChance <= 70) 
+        if (31 <= antMoveChance && antMoveChance <= 70) 
         {
-            Vector2 targetDirection = antDestination - (Vector2)transform.position;
+            Vector3 targetDirection = antDestination - transform.position;
             transform.up = targetDirection.normalized;
 
             antRigid.velocity = targetDirection.normalized * antMoveSpeed;
         }
         else 
         {
-            antRigid.velocity = new Vector2(randomDirectionX, randomDirectionY) * antMoveSpeed;
+            antRigid.velocity = new Vector3(randomDirectionX, randomDirectionY, 0f) * antMoveSpeed;
+        }
+    }
+
+    private void DoNotGoBeyondMap() 
+    {
+        if ((gameManager.GetMapWidth() * 0.5) <= transform.position.x) 
+        {
+            transform.position = new Vector3((gameManager.GetMapWidth() * 0.5f), transform.position.y, 0f);
+        }
+        else if (transform.position.x <= -(gameManager.GetMapWidth() * 0.5)) 
+        {
+            transform.position = new Vector3(-(gameManager.GetMapWidth() * 0.5f), transform.position.y, 0f);
+        }
+        else if ((gameManager.GetMapLength() * 0.5) <= transform.position.y) 
+        {
+            transform.position = new Vector3(transform.position.x, (gameManager.GetMapLength() * 0.5f), 0f);
+        }
+        else if (transform.position.y <= -(gameManager.GetMapLength() * 0.5)) 
+        {
+            transform.position = new Vector3(transform.position.x, -(gameManager.GetMapLength() * 0.5f), 0f);
         }
     }
 
